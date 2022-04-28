@@ -1,4 +1,4 @@
-package dto;
+package api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class LocationDTO {
-
-	private int employeeId;
-	private double lng;
-	private double lat;
-
+public class ZoneDTO{
+	private Double distance;
+	private Double lng;
+	private Double lat;
+	private Measure measure;
 }

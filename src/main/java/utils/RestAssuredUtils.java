@@ -1,8 +1,12 @@
 package utils;
 
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import lombok.experimental.UtilityClass;
 
@@ -15,8 +19,10 @@ public class RestAssuredUtils {
     static {
         REQ_SPEC = new RequestSpecBuilder()
                 .setBaseUri(BASE_URL)
-                .addFilter(new RequestLoggingFilter())
-                .addFilter(new ResponseLoggingFilter())
+                .addFilter(new AllureRestAssured())
+                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
+                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+                .setContentType(ContentType.JSON)
                 .build();
     }
 }
