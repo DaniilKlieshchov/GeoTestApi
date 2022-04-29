@@ -1,14 +1,15 @@
 package api;
 
-import api.dto.*;
+import api.dto.DistanceDTO;
+import api.dto.Measure;
+import api.dto.RequestLocationDTO;
+import api.dto.ZoneDTO;
 import api.module.ApiModule;
 import api.steps.EmployeeSteps;
 import api.steps.GeoSteps;
 import com.google.inject.Inject;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
-import utils.CSV;
-import utils.CsvDataProvider;
 
 
 @Guice(modules = {ApiModule.class})
@@ -33,7 +34,7 @@ public class EmployeeGeoApiTest {
                 .lng(24.03)
                 .build();
 
-        employeeSteps.updateUserLocationAndValidate(reqLocation);
+        employeeSteps.updateEmployeeLocationAndValidate(reqLocation);
         geoSteps.getNearbyEmployeesAndValidate(1, dist, 2);
     }
 
@@ -50,7 +51,7 @@ public class EmployeeGeoApiTest {
                 .distance(900.0)
                 .measure(Measure.KILOMETER).build();
 
-        employeeSteps.updateUserLocationAndValidate(reqLocation);
+        employeeSteps.updateEmployeeLocationAndValidate(reqLocation);
         geoSteps.getEmployeesNearPointAndValidate(zoneDTO, 2);
     }
 

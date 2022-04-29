@@ -25,6 +25,17 @@ public class RestClient {
                 .post(url);
     }
 
+    public void put(String url, Object body) {
+        RestAssured.given(spec)
+                .body(body)
+                .put(url);
+    }
+
+    public void delete(String url, Object pathVariableValue) {
+        RestAssured.given(spec)
+                .delete(url, pathVariableValue);
+    }
+
     public <T> T get(String url, Object pathVariableValue, Class<T> clazz) {
         return RestAssured.given(spec)
                 .get(url, pathVariableValue)
@@ -33,7 +44,7 @@ public class RestClient {
                 .as(clazz);
     }
 
-    public <T> T get(String url, Map<String, Object> requestParams, Class<T> clazz){
+    public <T> T get(String url, Map<String, Object> requestParams, Class<T> clazz) {
         return RestAssured.given(spec)
                 .params(requestParams)
                 .get(url)
